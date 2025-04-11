@@ -41,5 +41,5 @@ if len(os.listdir('train_folder/labels')) == 0:
 if len(os.listdir('val_folder/labels')) == 0:
     convert_gt_2_YOLO('test_folder')
 
-model.train(data="file.yaml", epochs=30)
+results = model.train(data="mini_dataset/data.yaml", epochs=30)
     

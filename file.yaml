@@ -1,8 +1,0 @@
-train: ../train_folder/img1
-labels/train: ../train_folder/labels
-val: ../val_folder/img1
-labels/val: ../val_folder/labels
-
-
-nc: 2
-names: ['ball','player']
