@@ -66,13 +66,19 @@ Example output when GPU is idle:
 
 ## Python Environment Setup
 
-### 1. Create a virtual environment:
+## 1. Go into workspace:
+
+```bash
+cd /work/imborhau
+```
+
+### 2. Create a virtual environment:
 
 ```bash
 python3 -m venv .venv
 ```
 
-### 2. Activate the environment:
+### 3. Activate the environment:
 
 ```bash
 source /work/imborhau/.venv/bin/activate
@@ -80,10 +86,24 @@ source /work/imborhau/.venv/bin/activate
 
 > Adjust the path if your `.venv` is located somewhere else.
 
-### 3. Install dependencies from `requirements.txt`:
+## 4. Clone repository into workspace:
 
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/ingeborgborhaug/football-analysis-detection-and-tracking.git
+```
+
+### 5. Install dependencies from `requirements.txt`:
+
+```bash
+pip install -r football-analysis-detection-and-tracking/requirements.txt
 ```
 
 ---
+
+## Run code:
+
+```bash
+python3 football-analysis-detection-and-tracking/detection.py
+```
+
+football-analysis-detection-and-tracking/

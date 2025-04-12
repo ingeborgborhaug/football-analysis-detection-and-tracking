@@ -53,11 +53,11 @@ else:
     print(DIR_2, "folder already exists.")
 
 # Check if (YOLO) labels folder is empty, if so convert gt.txt to YOLO format
-if len(os.listdir(LOCAL_PATH + '1_train-val_1min_aalesund_from_start/labels')) == 0:
-    convert_gt_2_YOLO('1_train-val_1min_aalesund_from_start')
+if len(os.listdir(LOCAL_PATH + '/1_train-val_1min_aalesund_from_start/labels')) == 0:
+    convert_gt_2_YOLO('/1_train-val_1min_aalesund_from_start')
 
-if len(os.listdir(LOCAL_PATH + '2_train-val_1min_after_goal/labels')) == 0:
-    convert_gt_2_YOLO('2_train-val_1min_after_goal')
+if len(os.listdir(LOCAL_PATH + '/2_train-val_1min_after_goal/labels')) == 0:
+    convert_gt_2_YOLO('/2_train-val_1min_after_goal')
 
 
 
