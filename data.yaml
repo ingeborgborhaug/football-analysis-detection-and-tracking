@@ -1,0 +1,5 @@
+train: /datasets/tdt4265/other/rbk/1_train-val_1min_aalesund_from_start/img1 # images/train
+val: /datasets/tdt4265/other/rbk/2_train-val_1min_after_goal/img1  # images/val
+
+nc: 2
+names: ['ball', 'player']
