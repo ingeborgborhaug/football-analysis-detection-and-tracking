@@ -64,7 +64,7 @@ if len(os.listdir(LOCAL_PATH + '/2_train-val_1min_after_goal/labels')) == 0:
 # results = model.predict("rbk/1_train-val_1min_aalesund_from_start/img1/000001.jpg")
 # Image.fromarray(results[0].plot()).show()
 
-# results = model.train(data="data.yaml", epochs=30)
+results = model.train(data="football-analysis-detection-and-tracking/data.yaml", epochs=30)
 
 
 
