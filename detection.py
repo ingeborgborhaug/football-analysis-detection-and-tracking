@@ -8,7 +8,7 @@ LOCAL_PATH = "/work/imborhau/rbk"
 def convert_gt_2_YOLO(video_folder):
     print(f'Converting gt.txt in {DATASET_PATH} to YOLO format in {LOCAL_PATH}...')
 
-    gt_file = DATASET_PATH + '/gt/gt.txt'
+    gt_file = DATASET_PATH + video_folder + '/gt/gt.txt'
     yolo_file_path = LOCAL_PATH + video_folder + '/labels/'
 
     image_width = 1920
