@@ -21,8 +21,6 @@ OUTPUT_PATHS = [
 def convert_gt_2_YOLO(out_path, gt_file):
     print(f'Importing YOLO files for labels...')
 
-    labels_folder = out_path / "labels"
-
     image_width = 1920
     image_height = 1080
 
@@ -39,16 +37,17 @@ def convert_gt_2_YOLO(out_path, gt_file):
 
         yolo_line = f"{class_id} {x_center} {y_center} {width} {height}\n"
 
-        yolo_file = labels_folder / f"{int(frame_id):06}.txt"
+        yolo_file = out_path / "labels" / f"{int(frame_id):06}.txt"
         with open(yolo_file, "a") as out_f:
             out_f.write(yolo_line)
-
 
 # Create symlinks from SSH for images in train and val folders
 for src_path, out_path in zip(SOURCE_PATHS, OUTPUT_PATHS):
 
     # Import YOLO files to labels folder
-    convert_gt_2_YOLO(out_path, src_path / "gt/gt.txt")
+    if not (out_path / "labels").exists():
+        (out_path / "labels").mkdir(parents=True, exist_ok=True)
+        convert_gt_2_YOLO(out_path, src_path / "gt/gt.txt")
 
     train_img_dir = out_path / "images/train"
     val_img_dir = out_path / "images/val"
