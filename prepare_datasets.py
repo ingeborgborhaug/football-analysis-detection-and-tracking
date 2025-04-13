@@ -41,10 +41,10 @@ def convert_gt_2_YOLO(out_path, gt_file):
         with open(yolo_file, "a") as out_f:
             out_f.write(yolo_line)
 
-# Create symlinks from SSH for images in train and val folders
-for src_path, out_path in zip(SOURCE_PATHS, OUTPUT_PATHS):
+## Prepare traning and validation data
+for src_path, out_path in zip(SOURCE_PATHS[:2], OUTPUT_PATHS[:2]):
 
-    # Import YOLO files to labels folder
+    # Create YOLO files for labels
     if not (out_path / "labels").exists():
         (out_path / "labels").mkdir(parents=True, exist_ok=True)
         convert_gt_2_YOLO(out_path, src_path / "gt/gt.txt")
@@ -73,28 +73,48 @@ for src_path, out_path in zip(SOURCE_PATHS, OUTPUT_PATHS):
     train_files = image_files[:split_index]
     val_files = image_files[split_index:]
 
-    # Create symlinks and move labes to respective folders
+
     for img in train_files:
+        # Create symlinks for images
         target = train_img_dir / img.name
         if not target.exists():
             target.symlink_to(img)
-
+        # Move labels to train- and val-folders
         label_file = src_label_dst / (img.stem + ".txt")
         label_dst = train_label_dst / label_file.name
         if label_file.exists():
             shutil.move(str(label_file), str(label_dst))
 
     for img in val_files:
+        # Create symlinks for images
         target = val_img_dir / img.name
         if not target.exists():
             target.symlink_to(img)
-
+        # Move labels to train- and val-folders
         label_file = src_label_dst / (img.stem + ".txt")
         label_dst = val_label_dst / label_file.name
         if label_file.exists():
             shutil.move(str(label_file), str(label_dst))
 
-    print(f"Preparation of data done.")
+
+## Prepare test data
+test_labels_dir = OUTPUT_PATHS[2] / "labels"
+test_img_dir = SOURCE_PATHS[2] / "img1"
+test_img_dst = OUTPUT_PATHS[2] / "images"
+
+test_labels_dir.mkdir(parents=True, exist_ok=True)
+test_img_dst.mkdir(parents=True, exist_ok=True)
+
+# Create YOLO files for labels
+if not (test_labels_dir).exists():
+        (test_labels_dir).mkdir(parents=True, exist_ok=True)
+        convert_gt_2_YOLO(OUTPUT_PATHS[2], SOURCE_PATHS[2] / "gt/gt.txt")
+
+# Create symlinks for test images
+for img in sorted(test_img_dir.glob("*.jpg")):
+        target = test_img_dst / img.name
+        if not target.exists():
+            target.symlink_to(img)
 
 
-
+print(f"Preparation of data done.")
