@@ -1,7 +1,7 @@
 import os
 import random
 from pathlib import Path
-
+import shutil
 
 DATASET_PATH = "/datasets/tdt4265/other/rbk"
 LOCAL_PATH = "/work/imborhau/football-analysis-detection-and-tracking"
@@ -51,20 +51,20 @@ for src_path, out_path in zip(SOURCE_PATHS, OUTPUT_PATHS):
 
     train_img_dir = out_path / "images/train"
     val_img_dir = out_path / "images/val"
-    train_label_dir = out_path / "labels/train"
-    val_label_dir = out_path / "labels/val"
+    train_label_dst = out_path / "labels/train"
+    val_label_dst = out_path / "labels/val"
 
     src_img_dir = src_path / "img1"
-    src_label_dir =  out_path / "labels"
+    src_label_dst =  out_path / "labels"
 
     # Create output directories
     train_img_dir.mkdir(parents=True, exist_ok=True)
     val_img_dir.mkdir(parents=True, exist_ok=True)
-    train_label_dir.mkdir(parents=True, exist_ok=True)
-    val_label_dir.mkdir(parents=True, exist_ok=True)
+    train_label_dst.mkdir(parents=True, exist_ok=True)
+    val_label_dst.mkdir(parents=True, exist_ok=True)
 
     # Get and shuffle image list
-    image_files = sorted(src_path.glob("*.jpg"))
+    image_files = sorted(src_img_dir.glob("*.jpg"))
     random.seed(42)
     random.shuffle(image_files)
 
@@ -79,20 +79,20 @@ for src_path, out_path in zip(SOURCE_PATHS, OUTPUT_PATHS):
         if not target.exists():
             target.symlink_to(img)
 
-        label_file = src_label_dir / (img.stem + ".txt")
-        label_dir = train_label_dir / label_file.name
+        label_file = src_label_dst / (img.stem + ".txt")
+        label_dst = train_label_dst / label_file.name
         if label_file.exists():
-            shutil.move(str(label_file), str(label_dir))
+            shutil.move(str(label_file), str(label_dst))
 
     for img in val_files:
         target = val_img_dir / img.name
         if not target.exists():
             target.symlink_to(img)
 
-        label_file = src_label_dir / (img.stem + ".txt")
-        label_dir = val_label_dir / label_file.name
+        label_file = src_label_dst / (img.stem + ".txt")
+        label_dst = val_label_dst / label_file.name
         if label_file.exists():
-            shutil.move(str(label_file), str(label_dir))
+            shutil.move(str(label_file), str(label_dst))
 
     print(f"Preparation of data done.")
 
