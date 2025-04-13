@@ -1,18 +1,44 @@
 from ultralytics import YOLO
 from PIL import Image
+from pathlib import Path
+from deep_sort_realtime.deepsort_tracker import DeepSort
 import os
+import cv2
 
 LOCAL_PATH = "/work/imborhau/football-analysis-detection-and-tracking"
+TEST_IMAGES_PATH = LOCAL_PATH + "/dataset_3/images"
+
+CONFIDENCE_THRESHOLD = 0.8
+GREEN = (0, 255, 0)
+
+example_image = cv2.imread(LOCAL_PATH + "/dataset_3/images/000001.jpg")
+VIDEO_HEIGHT, VIDEO_WIDTH, _ = example_image.shape
+
+# Initialize video writer
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+video = cv2.VideoWriter('output_video.mp4', fourcc, 20, (VIDEO_WIDTH, VIDEO_HEIGHT))
 
 model = YOLO("yolov8s.pt")
+tracker = DeepSort(max_age=50)
 
-# results = model.predict("rbk/1_train-val_1min_aalesund_from_start/img1/000001.jpg")
-# Image.fromarray(results[0].plot()).show()
+results_1 = model.train(data= LOCAL_PATH + "/data_1.yaml", epochs=30)
+results_2 = model.train(data= LOCAL_PATH + "/data_2.yaml", epochs=30)
 
-results = model.train(data= LOCAL_PATH + "/data.yaml", epochs=30)
+for image_path in sorted(Path(TEST_IMAGES_PATH).glob("*.jpg")):
+    frame = cv2.imread(str(image_path))
+    detections = model(frame)[0]
 
-for image in LOCAL_PATH + "/dataset_3/images/train":
-    
+    for data in detections.boxes.data.tolist():
+        confidence = data[4]
+
+        if float(confidence) < CONFIDENCE_THRESHOLD:
+            continue
+
+        xmin, ymin, xmax, ymax = int(data[0]), int(data[1]), int(data[2]), int(data[3])
+        cv2.rectangle(frame, (xmin, ymin) , (xmax, ymax), GREEN, 2)
+
+    video.write(frame)
 
 
-    
+video.release()
+
