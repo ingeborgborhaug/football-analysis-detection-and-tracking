@@ -8,7 +8,7 @@ import cv2
 LOCAL_PATH = "/work/imborhau/football-analysis-detection-and-tracking"
 TEST_IMAGES_PATH = LOCAL_PATH + "/dataset_3/images"
 
-CONFIDENCE_THRESHOLD = 0.8
+CONFIDENCE_THRESHOLD = 0.5
 GREEN = (0, 255, 0)
 
 example_image = cv2.imread(LOCAL_PATH + "/dataset_3/images/000001.jpg")
@@ -21,8 +21,8 @@ video = cv2.VideoWriter('output_video.mp4', fourcc, 20, (VIDEO_WIDTH, VIDEO_HEIG
 model = YOLO("yolov8s.pt")
 tracker = DeepSort(max_age=50)
 
-results_1 = model.train(data= LOCAL_PATH + "/data_1.yaml", epochs=60, dropout=0.1, plots=True, device="cuda")
-results_2 = model.train(data= LOCAL_PATH + "/data_2.yaml", epochs=30, dropout=0.2, plots=True)
+results_1 = model.train(data= LOCAL_PATH + "/data_1.yaml", epochs=300, dropout=0.3, plots=True)
+results_2 = model.train(data= LOCAL_PATH + "/data_2.yaml", epochs=300, dropout=0.3, plots=True)
 
 for image_path in sorted(Path(TEST_IMAGES_PATH).glob("*.jpg")):
     frame = cv2.imread(str(image_path))
