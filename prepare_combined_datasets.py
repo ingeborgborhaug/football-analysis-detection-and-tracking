@@ -30,6 +30,8 @@ def convert_gt_2_YOLO(out_path, gt_file):
     for line in lines:
         frame_id, track_id, x, y, w, h, conf, class_id, vis = line.strip().split(',')
 
+        class_id_yolo = class_id - 1
+
         x_center = (float(x) + float(w)/2) / image_width
         y_center = (float(y) + float(h)/2) / image_height
         width = float(w) / image_width
