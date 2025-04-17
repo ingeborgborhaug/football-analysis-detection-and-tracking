@@ -1,5 +1,5 @@
-train: dataset_combined/images/train
-val: dataset_combined/images/val
+train: /work/imborhau/football-analysis-detection-and-tracking/datasets/mini_dataset/images/train
+val: /work/imborhau/football-analysis-detection-and-tracking/datasets/mini_dataset/images/val
 
 nc: 2
 names: ['ball', 'player']
