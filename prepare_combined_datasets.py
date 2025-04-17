@@ -9,13 +9,13 @@ LOCAL_PATH = "/work/imborhau/football-analysis-detection-and-tracking"
 SOURCE_PATHS = [
     Path(DATASET_PATH + "/1_train-val_1min_aalesund_from_start"),
     Path(DATASET_PATH + "/2_train-val_1min_after_goal"),
-    Path(DATASET_PATH + "/rbk/3_test_1min_hamkam_from_start")
+    Path(DATASET_PATH + "/3_test_1min_hamkam_from_start")
 ]
 
 OUTPUT_PATHS = [
-    Path(LOCAL_PATH + "/dataset_1"),
-    Path(LOCAL_PATH + "/dataset_2"),
-    Path(LOCAL_PATH + "/dataset_3")
+    Path(LOCAL_PATH + "/datasets/dataset_1"),
+    Path(LOCAL_PATH + "/datasets/dataset_2"),
+    Path(LOCAL_PATH + "/datasets/dataset_3")
 ]
 
 def convert_gt_2_YOLO(out_path, gt_file):
@@ -28,7 +28,7 @@ def convert_gt_2_YOLO(out_path, gt_file):
         lines = f.readlines()
 
     for line in lines:
-        frame_id, track_id, x, y, w, h, class_id, vis, conf = line.strip().split(',')
+        frame_id, track_id, x, y, w, h, conf, class_id, vis = line.strip().split(',')
 
         x_center = (float(x) + float(w)/2) / image_width
         y_center = (float(y) + float(h)/2) / image_height
@@ -93,12 +93,11 @@ test_labels_dir = OUTPUT_PATHS[2] / "labels"
 test_img_dir = SOURCE_PATHS[2] / "img1"
 test_img_dst = OUTPUT_PATHS[2] / "images"
 
-test_labels_dir.mkdir(parents=True, exist_ok=True)
-test_img_dst.mkdir(parents=True, exist_ok=True)
-
 if not (test_labels_dir).exists():
     test_labels_dir.mkdir(parents=True, exist_ok=True)
     convert_gt_2_YOLO(OUTPUT_PATHS[2], SOURCE_PATHS[2] / "gt/gt.txt")
+
+test_img_dst.mkdir(parents=True, exist_ok=True)
 
 for img in sorted(test_img_dir.glob("*.jpg")):
     target = test_img_dst / img.name
@@ -140,7 +139,7 @@ def merge_datasets(source_datasets, target_path):
 # Merge first and second dataset
 merge_datasets(
     [OUTPUT_PATHS[0], OUTPUT_PATHS[1]],
-    Path(LOCAL_PATH + "/dataset_combined")
+    Path(LOCAL_PATH + "/datasets/dataset_combined")
 )
 
 print("Preparation of all datasets done.")
