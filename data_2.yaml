@@ -1,5 +1,0 @@
-train: dataset_2/images/train
-val: dataset_2/images/val
-
-nc: 2
-names: ['ball', 'player']

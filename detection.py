@@ -21,8 +21,7 @@ video = cv2.VideoWriter('output_video.mp4', fourcc, 20, (VIDEO_WIDTH, VIDEO_HEIG
 model = YOLO("yolov8s.pt")
 tracker = DeepSort(max_age=50)
 
-results_1 = model.train(data= LOCAL_PATH + "/data_1.yaml", epochs=300, dropout=0.3, plots=True)
-results_2 = model.train(data= LOCAL_PATH + "/data_2.yaml", epochs=300, dropout=0.3, plots=True)
+results = model.train(data= LOCAL_PATH + "/data_combined.yaml", epochs=300, dropout=0.3, plots=True)
 
 for image_path in sorted(Path(TEST_IMAGES_PATH).glob("*.jpg")):
     frame = cv2.imread(str(image_path))
