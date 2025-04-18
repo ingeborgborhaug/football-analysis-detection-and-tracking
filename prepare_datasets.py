@@ -6,19 +6,18 @@ import shutil
 DATASET_PATH = "/datasets/tdt4265/other/rbk"
 LOCAL_PATH = "/work/imborhau/football-analysis-detection-and-tracking"
 
-SOURCE_PATHS = [
-    Path("/datasets/tdt4265/other/rbk/1_train-val_1min_aalesund_from_start"),
-    Path("/datasets/tdt4265/other/rbk/2_train-val_1min_after_goal"),
-    Path("/datasets/tdt4265/other/rbk/3_test_1min_hamkam_from_start")
+SOURCE_DATASETS_STR = [
+    "/1_train-val_1min_aalesund_from_start",
+    "/2_train-val_1min_after_goal",
+    "/3_test_1min_hamkam_from_start"
 ]
 
 OUTPUT_PATHS = [
-    Path("/work/imborhau/football-analysis-detection-and-tracking/dataset_1"),
-    Path("/work/imborhau/football-analysis-detection-and-tracking/dataset_2"),
-    Path("/work/imborhau/football-analysis-detection-and-tracking/dataset_3")
+    Path(LOCAL_PATH + "/datasets/dataset_train_val"),
+    Path(LOCAL_PATH + "/datasets/dataset_test"),
 ]
 
-def convert_gt_2_YOLO(out_path, gt_file):
+def save_as_yolo_format(gt_file, ds_number, out_path):
     print(f'Importing YOLO files for labels...')
 
     image_width = 1920
@@ -28,93 +27,91 @@ def convert_gt_2_YOLO(out_path, gt_file):
         lines = f.readlines()
 
     for line in lines:
-        frame_id, track_id, x, y, w, h, class_id, vis, conf = line.strip().split(',')
+        frame_id, track_id, x, y, w, h, conf, class_id, vis = line.strip().split(',')
 
+        class_id_yolo = int(class_id) - 1
         x_center = (float(x) + float(w)/2) / image_width
         y_center = (float(y) + float(h)/2) / image_height
         width = float(w) / image_width
         height = float(h) / image_height
 
-        yolo_line = f"{class_id} {x_center} {y_center} {width} {height}\n"
+        yolo_line = f"{class_id_yolo} {x_center} {y_center} {width} {height}\n"
 
-        yolo_file = out_path / "labels" / f"{int(frame_id):06}.txt"
+        yolo_file = out_path / f"ds{ds_number}_{int(frame_id):06}.txt"
         with open(yolo_file, "a") as out_f:
             out_f.write(yolo_line)
 
-## Prepare traning and validation data
-for src_path, out_path in zip(SOURCE_PATHS[:2], OUTPUT_PATHS[:2]):
+## Prepare training and validation data
+for src_dataset_str in SOURCE_DATASETS_STR[:2]:
 
-    # Create YOLO files for labels
-    if not (out_path / "labels").exists():
-        (out_path / "labels").mkdir(parents=True, exist_ok=True)
-        convert_gt_2_YOLO(out_path, src_path / "gt/gt.txt")
+    ds_number = src_dataset_str[1]
 
-    train_img_dir = out_path / "images/train"
-    val_img_dir = out_path / "images/val"
-    train_label_dst = out_path / "labels/train"
-    val_label_dst = out_path / "labels/val"
+    train_img_dir = OUTPUT_PATHS[0] / "images/train"
+    val_img_dir = OUTPUT_PATHS[0] / "images/val"
+    train_label_dst = OUTPUT_PATHS[0] / "labels/train"
+    val_label_dst = OUTPUT_PATHS[0] / "labels/val"
 
-    src_img_dir = src_path / "img1"
-    src_label_dst =  out_path / "labels"
+    src_img_dir = Path(DATASET_PATH + src_dataset_str + "/img1")
+    src_gt_dir = Path(DATASET_PATH + src_dataset_str + "/gt/gt.txt")
 
-    # Create output directories
     train_img_dir.mkdir(parents=True, exist_ok=True)
     val_img_dir.mkdir(parents=True, exist_ok=True)
     train_label_dst.mkdir(parents=True, exist_ok=True)
     val_label_dst.mkdir(parents=True, exist_ok=True)
 
-    # Get and shuffle image list
     image_files = sorted(src_img_dir.glob("*.jpg"))
     random.seed(42)
     random.shuffle(image_files)
 
-    # 80/20 split
     split_index = int(len(image_files) * 0.8)
     train_files = image_files[:split_index]
     val_files = image_files[split_index:]
 
-
     for img in train_files:
-        # Create symlinks for images
-        target = train_img_dir / img.name
-        if not target.exists():
-            target.symlink_to(img)
-        # Move labels to train- and val-folders
-        label_file = src_label_dst / (img.stem + ".txt")
-        label_dst = train_label_dst / label_file.name
-        if label_file.exists():
-            shutil.move(str(label_file), str(label_dst))
+        new_name = f"ds{ds_number}_{img.name}"
+        target_img = train_img_dir / new_name
+        target_label = train_label_dst / new_name.replace(".jpg", ".txt")
+
+        if not target_img.exists():
+            target_img.symlink_to(img)
+
+        if not target_label.exists():
+            save_as_yolo_format(src_gt_dir, ds_number, train_label_dst)
 
     for img in val_files:
-        # Create symlinks for images
-        target = val_img_dir / img.name
-        if not target.exists():
-            target.symlink_to(img)
-        # Move labels to train- and val-folders
-        label_file = src_label_dst / (img.stem + ".txt")
-        label_dst = val_label_dst / label_file.name
-        if label_file.exists():
-            shutil.move(str(label_file), str(label_dst))
+        new_name = f"ds{ds_number}_{img.name}"
+        target_img = val_img_dir / new_name
+        target_label = val_label_dst / new_name.replace(".jpg", ".txt")
+
+        if not target_img.exists():
+            target_img.symlink_to(img)
+
+        if not target_label.exists():
+            save_as_yolo_format(src_gt_dir, ds_number, val_label_dst)
 
 
 ## Prepare test data
-test_labels_dir = OUTPUT_PATHS[2] / "labels"
-test_img_dir = SOURCE_PATHS[2] / "img1"
-test_img_dst = OUTPUT_PATHS[2] / "images"
+test_img_dir = OUTPUT_PATHS[1] / "images"
+test_label_dst = OUTPUT_PATHS[1] / "labels"
 
-test_labels_dir.mkdir(parents=True, exist_ok=True)
-test_img_dst.mkdir(parents=True, exist_ok=True)
+test_src_img_dir = Path(DATASET_PATH + SOURCE_DATASETS_STR[2] + "img1")
+test_src_gt_dir = Path(DATASET_PATH + SOURCE_DATASETS_STR[2] + "/gt/gt.txt")
 
-# Create YOLO files for labels
-if not (test_labels_dir).exists():
-        (test_labels_dir).mkdir(parents=True, exist_ok=True)
-        convert_gt_2_YOLO(OUTPUT_PATHS[2], SOURCE_PATHS[2] / "gt/gt.txt")
+test_img_dir.mkdir(parents=True, exist_ok=True)
+test_label_dst.mkdir(parents=True, exist_ok=True)
 
-# Create symlinks for test images
-for img in sorted(test_img_dir.glob("*.jpg")):
-        target = test_img_dst / img.name
-        if not target.exists():
-            target.symlink_to(img)
+test_image_files = sorted(src_img_dir.glob("*.jpg"))
+
+for img in test_image_files:
+        new_name = f"ds3_{img.name}"
+        target_img = test_img_dir / new_name
+        target_label = test_label_dst / new_name.replace(".jpg", ".txt")
+
+        if not target_img.exists():
+            target_img.symlink_to(img)
+
+        if not target_label.exists():
+            save_as_yolo_format(test_src_gt_dir, 3, test_label_dst)
 
 
-print(f"Preparation of data done.")
+print("Preparation of all datasets done.")

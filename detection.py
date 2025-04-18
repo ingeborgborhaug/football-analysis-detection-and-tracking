@@ -13,8 +13,8 @@ TEST_IMAGES_PATH = LOCAL_PATH + "/datasets/dataset_test/images"
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
 IMG_SIZE = 1088
-CONFIDENCE_THRESHOLD = 0.5
-COLORS = {
+CONFIDENCE_THRESHOLD = 0.0
+NAME_2_COLOR = {
     "Ball": (0,200,200),
     "Player": (255,0,0),
 }
@@ -33,14 +33,14 @@ def draw_detections(frame, detections):
         class_id = data[5]
         class_name = model.names[class_id]
 
-        # if float(confidence) < CONFIDENCE_THRESHOLD:
-        #     continue
+        if float(confidence) < CONFIDENCE_THRESHOLD:
+            continue
 
         xmin, ymin, xmax, ymax = int(data[0]), int(data[1]), int(data[2]), int(data[3])
         label = f"{class_name} {confidence:.2f}"
 
-        cv2.rectangle(frame, (xmin, ymin) , (xmax, ymax), COLORS[class_name], 2)
-        cv2.putText(frame, label, (xmin, ymin - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[class_name], 1)
+        cv2.rectangle(frame, (xmin, ymin) , (xmax, ymax), NAME_2_COLOR[class_name], 2)
+        cv2.putText(frame, label, (xmin, ymin - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, NAME_2_COLOR[class_name], 1)
 
     return frame
 
