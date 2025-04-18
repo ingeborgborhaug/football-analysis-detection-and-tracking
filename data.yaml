@@ -1,8 +1,5 @@
-train: /work/imborhau/football-analysis-detection-and-tracking/datasets/dataset_combined/images/train
-val: /work/imborhau/football-analysis-detection-and-tracking/datasets/dataset_combined/images/val
-
-# nc: 2
-# names: ['ball', 'player']
+train: /work/imborhau/football-analysis-detection-and-tracking/datasets/dataset_train_val/images/train
+val: /work/imborhau/football-analysis-detection-and-tracking/datasets/dataset_train_val/images/val
 
 names:
   0: Ball
