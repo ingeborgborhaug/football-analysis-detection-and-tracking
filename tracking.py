@@ -6,9 +6,14 @@ from deep_sort_realtime.deepsort_tracker import DeepSort
 import os
 import cv2
 from datetime import datetime
+import pandas as pd
 
 LOCAL_PATH = "/work/imborhau/football-analysis-detection-and-tracking"
+DATASET_PATH = "/datasets/tdt4265/other/rbk"
 TEST_IMAGES_PATH = LOCAL_PATH + "/datasets/dataset_test/images"
+
+gt_path = DATASET_PATH + "/3_test_1min_hamkam_from_start/gt/gt.txt"
+gt_file = open(gt_path, 'r')
 
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
@@ -28,8 +33,14 @@ ID_2_COLOR = {
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 
-model = YOLO('runs/detect/train17/weights/best.pt')
-tracker = DeepSort(max_age=300, max_iou_distance=0.9, nms_max_overlap=0.3)#, n_init=3, nn_budget=100, override_track_class=True, embed)
+model = YOLO(LOCAL_PATH + '/runs/detect/train17/weights/best.pt')
+tracker = DeepSort(
+    max_age=30,                   # Reduce ghost tracks
+    n_init=3,                     # Number of frames before confirming a track
+    max_iou_distance=0.9,       # Matching threshold for IoU (Intersection over Union)
+    nms_max_overlap=1.0,
+    # nn_budget=100, , embed
+)
 
 # Initialize video writer
 example_image = cv2.imread(LOCAL_PATH + "/datasets/dataset_test/images/ds3_000001.jpg")
