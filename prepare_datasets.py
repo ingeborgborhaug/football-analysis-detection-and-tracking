@@ -29,6 +29,9 @@ def save_as_yolo_format(gt_file, ds_number, out_path):
     for line in lines:
         frame_id, track_id, x, y, w, h, conf, class_id, vis = line.strip().split(',')
 
+        if conf == "0":
+            continue
+
         class_id_yolo = int(class_id) - 1
         x_center = (float(x) + float(w)/2) / image_width
         y_center = (float(y) + float(h)/2) / image_height

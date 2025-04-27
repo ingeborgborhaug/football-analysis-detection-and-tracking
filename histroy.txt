@@ -1,0 +1,597 @@
+Trying: max_age=15, n_init=1, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.569421  0.492401   0.720509  0.944729           373
+Progress: 3.70%
+Trying: max_age=15, n_init=1, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.616823  0.541852   0.744369  0.949374           275
+Progress: 7.41%
+Trying: max_age=15, n_init=1, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.624028  0.581039   0.747883  0.950559           257
+Progress: 11.11%
+Trying: max_age=15, n_init=3, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.691743  0.547847   0.796831  0.934395           186
+Progress: 14.81%
+Trying: max_age=15, n_init=3, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.710798  0.598531   0.804974  0.942856           153
+Progress: 18.52%
+Trying: max_age=15, n_init=3, max_iou_distance=0.9
+             mota      idf1  precision    recall  num_switches
+Tracking  0.70921  0.623826   0.803169  0.944302           155
+Progress: 22.22%
+Trying: max_age=15, n_init=5, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.776782  0.593882   0.864222  0.924298            97
+Progress: 25.93%
+Trying: max_age=15, n_init=5, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.786405  0.694871   0.864555  0.934798            82
+Progress: 29.63%
+Trying: max_age=15, n_init=5, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.785291  0.708081    0.86276  0.936149            82
+Progress: 33.33%
+Trying: max_age=30, n_init=1, max_iou_distance=0.5
+             mota      idf1  precision    recall  num_switches
+Tracking  0.33485  0.464079   0.611144  0.945961           389
+Progress: 37.04%
+Trying: max_age=30, n_init=1, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.412827  0.547704   0.641739  0.950228           292
+Progress: 40.74%
+Trying: max_age=30, n_init=1, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.424156  0.551524   0.646294  0.951365           276
+Progress: 44.44%
+Trying: max_age=30, n_init=3, max_iou_distance=0.5
+              mota     idf1  precision    recall  num_switches
+Tracking  0.558471  0.54265   0.715376  0.935438           202
+Progress: 48.15%
+Trying: max_age=30, n_init=3, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.583357  0.620782   0.725955  0.943473           167
+Progress: 51.85%
+Trying: max_age=30, n_init=3, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.578806  0.637308   0.722926  0.945037           170
+Progress: 55.56%
+Trying: max_age=30, n_init=5, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.714709  0.597299   0.816113  0.925555            97
+Progress: 59.26%
+Trying: max_age=30, n_init=5, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.724189  0.705199   0.817109  0.935651            86
+Progress: 62.96%
+Trying: max_age=30, n_init=5, max_iou_distance=0.9
+              mota     idf1  precision    recall  num_switches
+Tracking  0.721322  0.72783    0.81425  0.937144            86
+Progress: 66.67%
+Trying: max_age=50, n_init=1, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.031712  0.392485   0.511101  0.946672           397
+Progress: 70.37%
+Trying: max_age=50, n_init=1, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.145027  0.469784   0.543628  0.950962           321
+Progress: 74.07%
+Trying: max_age=50, n_init=1, max_iou_distance=0.9
+              mota     idf1  precision  recall  num_switches
+Tracking  0.171976  0.48995   0.551898  0.9521           299
+Progress: 77.78%
+Trying: max_age=50, n_init=3, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.387182  0.476131   0.632497  0.936078           211
+Progress: 81.48%
+Trying: max_age=50, n_init=3, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.415719  0.552451   0.643023  0.944326           184
+Progress: 85.19%
+Trying: max_age=50, n_init=3, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.417307  0.553265   0.643399  0.945961           184
+Progress: 88.89%
+Trying: max_age=50, n_init=5, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.631779  0.556136   0.760285  0.926408           107
+Progress: 92.59%
+Trying: max_age=50, n_init=5, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.638581  0.644535   0.760286  0.935959            96
+Progress: 96.30%
+Trying: max_age=50, n_init=5, max_iou_distance=0.9
+              mota     idf1  precision    recall  num_switches
+Tracking  0.636305  0.66211   0.758184  0.937595            95
+Progress: 100.00%
+Time to run hyperparameter search: 4678 seconds
+Best MOTA: 0.7864 with params: max_age=15, n_init=5, max_iou_distance=0.8
+
+
+
+
+
+Trying: max_age=10, n_init=5, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.799678  0.586066   0.884691  0.921952            89
+Progress: 3.70%
+Trying: max_age=10, n_init=5, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.807973  0.657467   0.883561  0.932878            83
+Progress: 7.41%
+Trying: max_age=10, n_init=5, max_iou_distance=0.9
+              mota     idf1  precision    recall  num_switches
+Tracking  0.807736  0.68764   0.882006  0.934727            82
+Progress: 11.11%
+Trying: max_age=10, n_init=7, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.812097  0.621278   0.900611  0.914699            70
+Progress: 14.81%
+Trying: max_age=10, n_init=7, max_iou_distance=0.8
+              mota      idf1  precision   recall  num_switches
+Tracking  0.824422  0.716364   0.899665  0.92956            62
+Progress: 18.52%
+Trying: max_age=10, n_init=7, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.826057  0.714609    0.89995  0.931006            61
+Progress: 22.22%
+Trying: max_age=10, n_init=10, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.822478  0.627354   0.916787  0.906096            58
+Progress: 25.93%
+Trying: max_age=10, n_init=10, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.840064  0.725909   0.917887  0.923848            48
+Progress: 29.63%
+Trying: max_age=10, n_init=10, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.842245  0.724401   0.918555  0.925412            47
+Progress: 33.33%
+Trying: max_age=15, n_init=5, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.776782  0.593882   0.864222  0.924298            97
+Progress: 37.04%
+Trying: max_age=15, n_init=5, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.786405  0.694871   0.864555  0.934798            82
+Progress: 40.74%
+Trying: max_age=15, n_init=5, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.785291  0.708081    0.86276  0.936149            82
+Progress: 44.44%
+Trying: max_age=15, n_init=7, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.794226  0.630368   0.883104  0.917473            76
+Progress: 48.15%
+Trying: max_age=15, n_init=7, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.807262  0.741101   0.883563  0.931456            61
+Progress: 51.85%
+Trying: max_age=15, n_init=7, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.808992  0.736704   0.884148  0.932618            60
+Progress: 55.56%
+Trying: max_age=15, n_init=10, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.809774  0.637712   0.902829  0.909248            68
+Progress: 59.26%
+Trying: max_age=15, n_init=10, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.828546  0.752728   0.905784  0.926029            49
+Progress: 62.96%
+Trying: max_age=15, n_init=10, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.830868  0.748582   0.906861  0.927237            48
+Progress: 66.67%
+Trying: max_age=30, n_init=5, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.714709  0.597299   0.816113  0.925555            97
+Progress: 70.37%
+Trying: max_age=30, n_init=5, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.724189  0.705199   0.817109  0.935651            86
+Progress: 74.07%
+Trying: max_age=30, n_init=5, max_iou_distance=0.9
+              mota     idf1  precision    recall  num_switches
+Tracking  0.721322  0.72783    0.81425  0.937144            86
+Progress: 77.78%
+Trying: max_age=30, n_init=7, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.747677  0.631218   0.844196  0.919108            76
+Progress: 81.48%
+Trying: max_age=30, n_init=7, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.760926  0.756107   0.845711  0.932523            62
+Progress: 85.19%
+Trying: max_age=30, n_init=7, max_iou_distance=0.9
+              mota     idf1  precision   recall  num_switches
+Tracking  0.764173  0.77607   0.847315  0.93385            59
+Progress: 88.89%
+Trying: max_age=30, n_init=10, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.771473  0.656546   0.868199  0.911452            68
+Progress: 92.59%
+Trying: max_age=30, n_init=10, max_iou_distance=0.8
+              mota      idf1  precision   recall  num_switches
+Tracking  0.791477  0.787277   0.872729  0.92802            51
+Progress: 96.30%
+Trying: max_age=30, n_init=10, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.795767  0.816666   0.875148  0.929513            48
+Progress: 100.00%
+Time to run hyperparameter search: 85.28 minutes
+Best MOTA: 0.8422 with params: max_age=10, n_init=10, max_iou_distance=0.9
+
+(.venv) clab09:/work/imborhau$ python3 football-analysis-detection-and-tracking/tracking.py
+Trying: max_age=6, n_init=8, max_iou_distance=0.5
+              mota     idf1  precision    recall  num_switches
+Tracking  0.834542  0.59797   0.927631  0.906854            66
+Progress: 1.56%
+Trying: max_age=6, n_init=8, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.846582  0.689743   0.924182  0.923635            54
+Progress: 3.12%
+Trying: max_age=6, n_init=8, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.849189  0.693121   0.924838  0.925649            52
+Progress: 4.69%
+Trying: max_age=6, n_init=8, max_iou_distance=1.0
+              mota      idf1  precision    recall  num_switches
+Tracking  0.799891  0.630619   0.889649  0.915458            85
+Progress: 6.25%
+Trying: max_age=6, n_init=10, max_iou_distance=0.5
+              mota     idf1  precision    recall  num_switches
+Tracking  0.835016  0.60123   0.934589  0.899436            62
+Progress: 7.81%
+Trying: max_age=6, n_init=10, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.852081  0.693142   0.932857  0.919392            48
+Progress: 9.38%
+Trying: max_age=6, n_init=10, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.855281  0.696512    0.93361  0.921905            45
+Progress: 10.94%
+Trying: max_age=6, n_init=10, max_iou_distance=1.0
+              mota     idf1  precision    recall  num_switches
+Tracking  0.815842  0.69311   0.905411  0.912922            72
+Progress: 12.50%
+Trying: max_age=6, n_init=12, max_iou_distance=0.5
+              mota     idf1  precision    recall  num_switches
+Tracking  0.834755  0.60354   0.940274  0.892894            60
+Progress: 14.06%
+Trying: max_age=6, n_init=12, max_iou_distance=0.8
+             mota      idf1  precision    recall  num_switches
+Tracking  0.85483  0.694957   0.938421  0.915979            44
+Progress: 15.62%
+Trying: max_age=6, n_init=12, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.858267  0.698479   0.938932  0.919037            42
+Progress: 17.19%
+Trying: max_age=6, n_init=12, max_iou_distance=1.0
+              mota      idf1  precision   recall  num_switches
+Tracking  0.825607  0.661347   0.916432  0.91022            68
+Progress: 18.75%
+Trying: max_age=6, n_init=15, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.835182  0.606746    0.94929  0.883817            60
+Progress: 20.31%
+Trying: max_age=6, n_init=15, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.862012  0.699301   0.949706  0.911215            40
+Progress: 21.88%
+Trying: max_age=6, n_init=15, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.865875  0.702745   0.950282  0.914628            38
+Progress: 23.44%
+Trying: max_age=6, n_init=15, max_iou_distance=1.0
+              mota      idf1  precision    recall  num_switches
+Tracking  0.835988  0.666979   0.928899  0.906641            53
+Progress: 25.00%
+Trying: max_age=8, n_init=8, max_iou_distance=0.5
+             mota      idf1  precision    recall  num_switches
+Tracking  0.82646  0.604475   0.917933  0.909296            65
+Progress: 26.56%
+Trying: max_age=8, n_init=8, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.838974  0.714548   0.915261  0.925934            52
+Progress: 28.12%
+Trying: max_age=8, n_init=8, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.840965  0.712927   0.915758  0.927522            52
+Progress: 29.69%
+Trying: max_age=8, n_init=8, max_iou_distance=1.0
+              mota     idf1  precision    recall  num_switches
+Tracking  0.783869  0.64525    0.87659  0.914818            91
+Progress: 31.25%
+Trying: max_age=8, n_init=10, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.827337  0.607379   0.924288  0.902754            62
+Progress: 32.81%
+Trying: max_age=8, n_init=10, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.845089  0.717938   0.923712  0.922355            46
+Progress: 34.38%
+Trying: max_age=8, n_init=10, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.847459  0.716404   0.924474  0.924014            45
+Progress: 35.94%
+Trying: max_age=8, n_init=10, max_iou_distance=1.0
+              mota      idf1  precision    recall  num_switches
+Tracking  0.800886  0.655579   0.892653  0.912519            80
+Progress: 37.50%
+Trying: max_age=8, n_init=12, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.829352  0.609923   0.931165  0.897089            60
+Progress: 39.06%
+Trying: max_age=8, n_init=12, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.849355  0.720211   0.930317  0.919226            43
+Progress: 40.62%
+Trying: max_age=8, n_init=12, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.852057  0.718874    0.93098  0.921359            42
+Progress: 42.19%
+Trying: max_age=8, n_init=12, max_iou_distance=1.0
+              mota      idf1  precision    recall  num_switches
+Tracking  0.812856  0.658489   0.904954  0.910101            70
+Progress: 43.75%
+Trying: max_age=8, n_init=15, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.833665  0.613368   0.943351  0.888439            60
+Progress: 45.31%
+Trying: max_age=8, n_init=15, max_iou_distance=0.8
+              mota    idf1  precision    recall  num_switches
+Tracking  0.857366  0.7253   0.942454  0.914131            40
+Progress: 46.88%
+Trying: max_age=8, n_init=15, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.860471  0.723885   0.943241  0.916548            39
+Progress: 48.44%
+Trying: max_age=8, n_init=15, max_iou_distance=1.0
+              mota      idf1  precision    recall  num_switches
+Tracking  0.821175  0.681292   0.916757  0.904698            58
+Progress: 50.00%
+Trying: max_age=10, n_init=8, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.817762  0.624176   0.908468  0.911073            64
+Progress: 51.56%
+Trying: max_age=10, n_init=8, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.830631  0.719615   0.906855  0.927166            55
+Progress: 53.12%
+Trying: max_age=10, n_init=8, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.832575  0.717982   0.907314  0.928754            55
+Progress: 54.69%
+Trying: max_age=10, n_init=8, max_iou_distance=1.0
+              mota      idf1  precision    recall  num_switches
+Tracking  0.758817  0.580397   0.858281  0.911476            91
+Progress: 56.25%
+Trying: max_age=10, n_init=10, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.822478  0.627354   0.916787  0.906096            58
+Progress: 57.81%
+Trying: max_age=10, n_init=10, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.840064  0.725909   0.917887  0.923848            48
+Progress: 59.38%
+Trying: max_age=10, n_init=10, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.842245  0.724401   0.918555  0.925412            47
+Progress: 60.94%
+Trying: max_age=10, n_init=10, max_iou_distance=1.0
+              mota     idf1  precision    recall  num_switches
+Tracking  0.779816  0.62876   0.876998  0.909153            77
+Progress: 62.50%
+Trying: max_age=10, n_init=12, max_iou_distance=0.5
+              mota     idf1  precision    recall  num_switches
+Tracking  0.826365  0.63103   0.924855  0.900787            52
+Progress: 64.06%
+Trying: max_age=10, n_init=12, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.845137  0.728355   0.925086  0.920767            45
+Progress: 65.62%
+Trying: max_age=10, n_init=12, max_iou_distance=0.9
+              mota     idf1  precision    recall  num_switches
+Tracking  0.847649  0.72704   0.925657  0.922805            44
+Progress: 67.19%
+Trying: max_age=10, n_init=12, max_iou_distance=1.0
+              mota      idf1  precision    recall  num_switches
+Tracking  0.804584  0.645619    0.89661  0.911358            71
+Progress: 68.75%
+Trying: max_age=10, n_init=15, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.834684  0.634516   0.938309  0.894743            52
+Progress: 70.31%
+Trying: max_age=10, n_init=15, max_iou_distance=0.8
+              mota      idf1  precision   recall  num_switches
+Tracking  0.854712  0.733802   0.938028  0.91624            42
+Progress: 71.88%
+Trying: max_age=10, n_init=15, max_iou_distance=0.9
+              mota     idf1  precision    recall  num_switches
+Tracking  0.857556  0.73254   0.938843  0.918349            41
+Progress: 73.44%
+Trying: max_age=10, n_init=15, max_iou_distance=1.0
+              mota     idf1  precision    recall  num_switches
+Tracking  0.813993  0.65199   0.909379  0.905693            61
+Progress: 75.00%
+Trying: max_age=15, n_init=8, max_iou_distance=0.5
+              mota      idf1  precision   recall  num_switches
+Tracking  0.803114  0.634298   0.893394  0.91387            72
+Progress: 76.56%
+Trying: max_age=15, n_init=8, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.815984  0.745462     0.8927  0.928944            55
+Progress: 78.12%
+Trying: max_age=15, n_init=8, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.817999  0.741152   0.893462  0.930224            55
+Progress: 79.69%
+Trying: max_age=15, n_init=8, max_iou_distance=1.0
+              mota      idf1  precision    recall  num_switches
+Tracking  0.736941  0.614223   0.836089  0.919179            86
+Progress: 81.25%
+Trying: max_age=15, n_init=10, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.809774  0.637712   0.902829  0.909248            68
+Progress: 82.81%
+Trying: max_age=15, n_init=10, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.828546  0.752728   0.905784  0.926029            49
+Progress: 84.38%
+Trying: max_age=15, n_init=10, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.830868  0.748582   0.906861  0.927237            48
+Progress: 85.94%
+Trying: max_age=15, n_init=10, max_iou_distance=1.0
+              mota      idf1  precision    recall  num_switches
+Tracking  0.750119  0.631205   0.852329  0.909438            74
+Progress: 87.50%
+Trying: max_age=15, n_init=12, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.815913  0.660033   0.912212  0.904342            59
+Progress: 89.06%
+Trying: max_age=15, n_init=12, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.835751  0.736591   0.914178  0.923516            45
+Progress: 90.62%
+Trying: max_age=15, n_init=12, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.837955  0.732378    0.91516  0.924725            44
+Progress: 92.19%
+Trying: max_age=15, n_init=12, max_iou_distance=1.0
+              mota      idf1  precision    recall  num_switches
+Tracking  0.773346  0.639191   0.871037  0.909746            72
+Progress: 93.75%
+Trying: max_age=15, n_init=15, max_iou_distance=0.5
+              mota      idf1  precision    recall  num_switches
+Tracking  0.825749  0.664983    0.92623  0.898701            58
+Progress: 95.31%
+Trying: max_age=15, n_init=15, max_iou_distance=0.8
+              mota      idf1  precision   recall  num_switches
+Tracking  0.847507  0.742552   0.928373  0.91944            42
+Progress: 96.88%
+Trying: max_age=15, n_init=15, max_iou_distance=0.9
+             mota      idf1  precision    recall  num_switches
+Tracking  0.85009  0.738437   0.929727  0.920648            41
+Progress: 98.44%
+Trying: max_age=15, n_init=15, max_iou_distance=1.0
+              mota      idf1  precision    recall  num_switches
+Tracking  0.791311  0.644202   0.889158  0.905764            65
+Progress: 100.00%
+Time to run hyperparameter search: 225.74 minutes
+Best MOTA: 0.8659 with params: max_age=6, n_init=15, max_iou_distance=0.9
+
+Progress: 15.62%
+Trying: max_age=2, n_init=20, max_iou_distance=0.9
+              mota     idf1  precision    recall  num_switches
+Tracking  0.861443  0.61487    0.96617  0.894174            60
+Progress: 18.75%
+Trying: max_age=2, n_init=30, max_iou_distance=0.8
+              mota      idf1  precision   recall  num_switches
+Tracking  0.841558  0.580744   0.972751  0.86725            59
+Progress: 21.88%
+Trying: max_age=2, n_init=30, max_iou_distance=0.9
+              mota      idf1  precision   recall  num_switches
+Tracking  0.849189  0.616988   0.972954  0.87481            55
+Progress: 25.00%
+Trying: max_age=4, n_init=12, max_iou_distance=0.8
+              mota     idf1  precision    recall  num_switches
+Tracking  0.860376  0.60548   0.947205  0.912543            55
+Progress: 28.12%
+Trying: max_age=4, n_init=12, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.865046  0.650525   0.947649  0.916856            49
+Progress: 31.25%
+Trying: max_age=4, n_init=15, max_iou_distance=0.8
+              mota      idf1  precision   recall  num_switches
+Tracking  0.862841  0.607697   0.954562  0.90721            50
+Progress: 34.38%
+Trying: max_age=4, n_init=15, max_iou_distance=0.9
+              mota     idf1  precision    recall  num_switches
+Tracking  0.867913  0.65291   0.955024  0.911926            45
+Progress: 37.50%
+Trying: max_age=4, n_init=20, max_iou_distance=0.8
+              mota      idf1  precision   recall  num_switches
+Tracking  0.861822  0.609533    0.96187  0.89863            50
+Progress: 40.62%
+Trying: max_age=4, n_init=20, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.867439  0.654893   0.962303  0.903915            45
+Progress: 43.75%
+Trying: max_age=4, n_init=30, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.851488  0.609913   0.969952  0.879835            46
+Progress: 46.88%
+Trying: max_age=4, n_init=30, max_iou_distance=0.9
+              mota     idf1  precision    recall  num_switches
+Tracking  0.859855  0.65665   0.970393  0.887917            41
+Progress: 50.00%
+Trying: max_age=6, n_init=12, max_iou_distance=0.8
+             mota      idf1  precision    recall  num_switches
+Tracking  0.85483  0.694957   0.938421  0.915979            44
+Progress: 53.12%
+Trying: max_age=6, n_init=12, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.858267  0.698479   0.938932  0.919037            42
+Progress: 56.25%
+Trying: max_age=6, n_init=15, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.862012  0.699301   0.949706  0.911215            40
+Progress: 59.38%
+Trying: max_age=6, n_init=15, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.865875  0.702745   0.950282  0.914628            38
+Progress: 62.50%
+Trying: max_age=6, n_init=20, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.863197  0.701805   0.957948  0.903821            40
+Progress: 65.62%
+Trying: max_age=6, n_init=20, max_iou_distance=0.9
+             mota      idf1  precision    recall  num_switches
+Tracking  0.86725  0.705163   0.958493  0.907447            38
+Progress: 68.75%
+Trying: max_age=6, n_init=30, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.856489  0.703521    0.96729  0.887325            35
+Progress: 71.88%
+Trying: max_age=6, n_init=30, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.862581  0.707814   0.967841  0.893037            33
+Progress: 75.00%
+Trying: max_age=8, n_init=12, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.849355  0.720211   0.930317  0.919226            43
+Progress: 78.12%
+Trying: max_age=8, n_init=12, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.852057  0.718874    0.93098  0.921359            42
+Progress: 81.25%
+Trying: max_age=8, n_init=15, max_iou_distance=0.8
+              mota    idf1  precision    recall  num_switches
+Tracking  0.857366  0.7253   0.942454  0.914131            40
+Progress: 84.38%
+Trying: max_age=8, n_init=15, max_iou_distance=0.9
+              mota      idf1  precision    recall  num_switches
+Tracking  0.860471  0.723885   0.943241  0.916548            39
+Progress: 87.50%
+Trying: max_age=8, n_init=20, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.861704  0.728736   0.953071  0.907328            40
+Progress: 90.62%
+Trying: max_age=8, n_init=20, max_iou_distance=0.9
+             mota      idf1  precision    recall  num_switches
+Tracking  0.86488  0.727237   0.953834  0.909841            39
+Progress: 93.75%
+Trying: max_age=8, n_init=30, max_iou_distance=0.8
+              mota      idf1  precision    recall  num_switches
+Tracking  0.857177  0.730633   0.961806  0.893487            35
+Progress: 96.88%
+Trying: max_age=8, n_init=30, max_iou_distance=0.9
+              mota     idf1  precision    recall  num_switches
+Tracking  0.861277  0.72945   0.962702  0.896829            34
+Progress: 100.00%
+Time to run hyperparameter search: 104.01 minutes
+Best MOTA: 0.8679 with params: max_age=4, n_init=15, max_iou_distance=0.9

@@ -105,5 +105,3 @@ pip install -r football-analysis-detection-and-tracking/requirements.txt
 ```bash
 python3 football-analysis-detection-and-tracking/detection.py
 ```
-
-football-analysis-detection-and-tracking/
