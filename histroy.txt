@@ -595,3 +595,61 @@ Tracking  0.861277  0.72945   0.962702  0.896829            34
 Progress: 100.00%
 Time to run hyperparameter search: 104.01 minutes
 Best MOTA: 0.8679 with params: max_age=4, n_init=15, max_iou_distance=0.9
+
+
+
+
+
+
+50 epochs completed in 0.485 hours.
+Optimizer stripped from runs/detect/train64/weights/last.pt, 22.6MB
+Optimizer stripped from runs/detect/train64/weights/best.pt, 22.6MB
+
+Validating runs/detect/train64/weights/best.pt...
+Ultralytics 8.3.107 🚀 Python-3.10.12 torch-2.6.0+cu124 CUDA:0 (NVIDIA GeForce RTX 4090, 24096MiB)
+Model summary (fused): 72 layers, 11,126,358 parameters, 0 gradients, 28.4 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 19/19 
+                   all        722      16562      0.944      0.783      0.866       0.68
+                  Ball        474        474      0.897      0.567      0.736      0.442
+                Player        722      16088      0.991      0.999      0.995      0.918
+Speed: 0.2ms preprocess, 1.2ms inference, 0.0ms loss, 0.3ms postprocess per image
+Results saved to runs/detect/train64
+💡 Learn more at https://docs.ultralytics.com/modes/train
+VS Code: view Ultralytics VS Code Extension ⚡ at https://docs.ultralytics.com/integrations/vscode
+Saved runs/detect/tune3/tune_scatter_plots.png
+Saved runs/detect/tune3/tune_fitness.png
+
+Tuner: 30/30 iterations complete ✅ (50629.04s)
+Tuner: Results saved to runs/detect/tune3
+Tuner: Best fitness=0.70881 observed at iteration 2
+Tuner: Best fitness metrics are {'metrics/precision(B)': 0.94012, 'metrics/recall(B)': 0.79251, 'metrics/mAP50(B)': 0.87369, 'metrics/mAP50-95(B)': 0.69049, 'val/box_loss': 0.40036, 'val/cls_loss': 0.20021, 'val/dfl_loss': 0.73675, 'fitness': 0.70881}
+Tuner: Best fitness model is runs/detect/train36
+Tuner: Best fitness hyperparameters are printed below.
+
+Printing 'runs/detect/tune3/best_hyperparameters.yaml'
+
+lr0: 0.01
+lrf: 0.01003
+momentum: 0.93816
+weight_decay: 0.00051
+warmup_epochs: 2.77509
+warmup_momentum: 0.79805
+box: 7.41325
+cls: 0.4922
+dfl: 1.43177
+hsv_h: 0.015
+hsv_s: 0.72628
+hsv_v: 0.4
+degrees: 0.0
+translate: 0.1
+scale: 0.48445
+shear: 0.0
+perspective: 0.0
+flipud: 0.0
+fliplr: 0.48399
+bgr: 0.0
+mosaic: 1.0
+mixup: 0.0
+copy_paste: 0.0
+
+Tuning time: 14:03:49.047550

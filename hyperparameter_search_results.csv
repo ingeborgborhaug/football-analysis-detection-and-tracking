@@ -1,0 +1,2 @@
+max_age,n_init,max_iou_distance,mota
+4,50,0.9,0.83338073568449
