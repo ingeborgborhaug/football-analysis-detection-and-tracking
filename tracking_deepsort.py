@@ -41,14 +41,14 @@ model = YOLO(LOCAL_PATH + '/runs/detect/train17/weights/best.pt')
 example_image = cv2.imread(LOCAL_PATH + "/datasets/dataset_test/images/ds3_000001.jpg")
 VIDEO_HEIGHT, VIDEO_WIDTH, _ = example_image.shape
 
-fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-output_dir = Path('/work/imborhau/video_outputs')
-output_dir.mkdir(parents=True, exist_ok=True)
-video_path = output_dir / f"output_video_{timestamp}.mp4"
-video = cv2.VideoWriter(str(video_path), fourcc, 20, (VIDEO_WIDTH, VIDEO_HEIGHT))
+# fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+# output_dir = Path('/work/imborhau/video_outputs')
+# output_dir.mkdir(parents=True, exist_ok=True)
+# video_path = output_dir / f"output_video_{timestamp}.mp4"
+# video = cv2.VideoWriter(str(video_path), fourcc, 20, (VIDEO_WIDTH, VIDEO_HEIGHT))
 
 param_grid = {
-    "max_age": [4],
+    "max_age": [6],
     "n_init": [50], 
     "max_iou_distance": [0.9],
 }
@@ -74,7 +74,7 @@ for max_age, n_init, max_iou_distance in param_combinations:
         n_init=n_init, # Number of frames to initialize a track
         max_iou_distance=max_iou_distance, # Maximum distance between a detection and a track to consider it a match
         nms_max_overlap=1.0, # NMS overlap threshold
-        persist=True, # Keep the tracker alive even if no detections are present
+        # persist=True, # Keep the tracker alive even if no detections are present
     )
     acc = mm.MOTAccumulator(auto_id=True)
     frame_number = 1
@@ -98,11 +98,13 @@ for max_age, n_init, max_iou_distance in param_combinations:
 
             xmin, ymin, xmax, ymax = int(data[0]), int(data[1]), int(data[2]), int(data[3])
             class_id = int(data[5])
+
+            if class_id == 0: # Skip ball
+                continue
             
             results_yolo.append([[xmin, ymin, xmax - xmin, ymax - ymin], confidence, class_id])
 
         tracks = tracker.update_tracks(results_yolo, frame=frame)
-
 
         for track in tracks:
 
@@ -136,7 +138,7 @@ for max_age, n_init, max_iou_distance in param_combinations:
         distances = mm.distances.iou_matrix(gt_boxes, pred_boxes, max_iou=0.5)
         acc.update(gt_ids, pred_ids, distances)
 
-        video.write(frame)
+        # video.write(frame)
 
         frame_number += 1
 
@@ -163,7 +165,7 @@ end = datetime.now()
 print(f"Time to run hyperparameter search: {(end - start).total_seconds()/ 60:.2f} minutes")
 print(f"Best MOTA: {best_mota:.4f} with params: max_age={best_params[0]}, n_init={best_params[1]}, max_iou_distance={best_params[2]}")
 
-video.release()
+# video.release()
 
 # Save results to CSV
 df = pd.DataFrame(results)
