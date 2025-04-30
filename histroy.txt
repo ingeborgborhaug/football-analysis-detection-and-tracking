@@ -653,3 +653,5 @@ mixup: 0.0
 copy_paste: 0.0
 
 Tuning time: 14:03:49.047550
+
+Best num_switches: 29.0000 with params: max_age=6, n_init=50, max_iou_distance=0.9
