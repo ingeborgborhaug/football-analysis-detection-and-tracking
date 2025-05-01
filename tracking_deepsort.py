@@ -41,15 +41,15 @@ model = YOLO(LOCAL_PATH + '/runs/detect/train17/weights/best.pt')
 example_image = cv2.imread(LOCAL_PATH + "/datasets/dataset_test/images/ds3_000001.jpg")
 VIDEO_HEIGHT, VIDEO_WIDTH, _ = example_image.shape
 
-# fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-# output_dir = Path('/work/imborhau/video_outputs')
-# output_dir.mkdir(parents=True, exist_ok=True)
-# video_path = output_dir / f"output_video_{timestamp}.mp4"
-# video = cv2.VideoWriter(str(video_path), fourcc, 20, (VIDEO_WIDTH, VIDEO_HEIGHT))
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+output_dir = Path('/work/imborhau/video_outputs')
+output_dir.mkdir(parents=True, exist_ok=True)
+video_path = output_dir / f"output_video_{timestamp}.mp4"
+video = cv2.VideoWriter(str(video_path), fourcc, 20, (VIDEO_WIDTH, VIDEO_HEIGHT))
 
 param_grid = {
-    "max_age": [6],
-    "n_init": [50], 
+    "max_age": [4],
+    "n_init": [15], 
     "max_iou_distance": [0.9],
 }
 
@@ -88,7 +88,7 @@ for max_age, n_init, max_iou_distance in param_combinations:
         pred_ids = []
 
         ## DeepSort
-        detections = model(frame, verbose=False, conf=0.25)[0]
+        detections = model(frame, verbose=False, conf=0.1)[0]
 
         results_yolo = []
 
@@ -99,8 +99,8 @@ for max_age, n_init, max_iou_distance in param_combinations:
             xmin, ymin, xmax, ymax = int(data[0]), int(data[1]), int(data[2]), int(data[3])
             class_id = int(data[5])
 
-            if class_id == 0: # Skip ball
-                continue
+            # if class_id == 0: # Skip ball
+            #     continue
             
             results_yolo.append([[xmin, ymin, xmax - xmin, ymax - ymin], confidence, class_id])
 
@@ -138,7 +138,7 @@ for max_age, n_init, max_iou_distance in param_combinations:
         distances = mm.distances.iou_matrix(gt_boxes, pred_boxes, max_iou=0.5)
         acc.update(gt_ids, pred_ids, distances)
 
-        # video.write(frame)
+        video.write(frame)
 
         frame_number += 1
 
@@ -165,25 +165,25 @@ end = datetime.now()
 print(f"Time to run hyperparameter search: {(end - start).total_seconds()/ 60:.2f} minutes")
 print(f"Best MOTA: {best_mota:.4f} with params: max_age={best_params[0]}, n_init={best_params[1]}, max_iou_distance={best_params[2]}")
 
-# video.release()
+video.release()
 
 # Save results to CSV
 df = pd.DataFrame(results)
 df.to_csv('hyperparameter_search_results.csv', index=False)
 
 # Plotting results
-fig, ax = plt.subplots(figsize=(10,6))
-scatter = ax.scatter(
-    df["max_age"], df["n_init"],
-    c=df["mota"], cmap="viridis", s=200, edgecolors='k'
-)
-plt.colorbar(scatter, label='MOTA Score')
-ax.set_xlabel('Max Age')
-ax.set_ylabel('N Init')
-ax.set_title('Hyperparameter Search: MOTA Scores (color)')
-plt.grid(True)
-plt.show()
-plt.savefig('plot.png')
+# fig, ax = plt.subplots(figsize=(10,6))
+# scatter = ax.scatter(
+#     df["max_age"], df["n_init"],
+#     c=df["mota"], cmap="viridis", s=200, edgecolors='k'
+# )
+# plt.colorbar(scatter, label='MOTA Score')
+# ax.set_xlabel('Max Age')
+# ax.set_ylabel('N Init')
+# ax.set_title('Hyperparameter Search: MOTA Scores (color)')
+# plt.grid(True)
+# plt.show()
+# plt.savefig('plot.png')
 
 
 ## Bytetrack
