@@ -8,6 +8,7 @@ from datetime import datetime
 import pandas as pd
 import motmetrics as mm
 import itertools
+import torch
 
 LOCAL_PATH = "/work/imborhau/football-analysis-detection-and-tracking"
 DATASET_PATH = "/datasets/tdt4265/other/rbk"
@@ -34,7 +35,7 @@ ID_2_COLOR = {
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 
-model = YOLO(LOCAL_PATH + '/runs/detect/train17/weights/best.pt')
+model = YOLO(LOCAL_PATH + '/runs/detect/train66/weights/best.pt')
 
 # Initialize video writer
 example_image = cv2.imread(LOCAL_PATH + "/datasets/dataset_test/images/ds3_000001.jpg")
@@ -53,17 +54,28 @@ start = datetime.now()
 acc_ball = mm.MOTAccumulator(auto_id=True)
 
 frame_paths = sorted(Path(TEST_IMAGES_PATH).glob("*.jpg"))
-results = model.track(source=frame_paths, persist=True, tracker="bytetrack.yaml", conf=0.05)[0]
+results = model.track(
+    source=frame_paths, 
+    persist=True, 
+    tracker="bytetrack.yaml", 
+    stream=True,
+    conf=0.05,
+    imgsz=640
+)
 
-for frame_idx, image_path in enumerate(frame_paths, start=1):
+for frame_idx, (image_path, result) in enumerate(zip(frame_paths, results), start=1):
 
-    frame_detections = results.boxes[results.boxes.frame == frame_idx]
-    
+    torch.cuda.memory_summary(device=None, abbreviated=False)
+
+    # frame_detections = results.boxes[results.boxes.frame == frame_idx]
+    frame = cv2.imread(str(image_path))
+
     gt_frames = gt_file[gt_file[0] == frame_idx]
+    gt_frames = gt_frames[gt_frames[7] == 1] # Only keep ball
     pred_boxes_ball = []
     pred_ids_ball = []
         
-    for box in frame_detections:
+    for box in result.boxes:
         cls_id = int(box.cls[0])
 
         if not (cls_id == 0): # Skip if not ball
@@ -88,28 +100,26 @@ for frame_idx, image_path in enumerate(frame_paths, start=1):
     # -----------------
 
     # Update metrics
-    gt_boxes_ball = gt_frames[gt_frames[7] == 1][[2, 3, 4, 5]].values
-    gt_ids_ball = gt_frames[gt_frames[7] == 1][1].values
+    gt_boxes_ball = gt_frames[[2, 3, 4, 5]].values
+    gt_ids_ball = gt_frames[1].values
 
     distances_ball = mm.distances.iou_matrix(gt_boxes_ball, pred_boxes_ball, max_iou=0.5)
 
     # print(f'leng(gt(gt_ids_ball) {len(gt_ids_ball)}, len(pred_ids_ball) {len(pred_ids_ball)}, len(distances_ball.shape) {len(distances_ball)}')
     acc_ball.update(gt_ids_ball, pred_ids_ball, distances_ball)
 
+    torch.cuda.empty_cache()
+
     # print(f"Frame {frame_number}: {len(gt_ids_ball)} GT ball, {len(pred_ids_ball)} predicted")
 
     # video.write(frame)
 
-    frame_number += 1
 
 mh = mm.metrics.create()
 summary_ball = mh.compute(acc_ball, metrics=['mota', 'idf1', 'precision', 'recall', 'num_switches'], name='Tracking')
 mota_ball = summary_ball.loc['Tracking']['mota']
 
 print(f"\n{summary_ball}")
-
-precentage_done += 1/number_of_combinations
-print(f"Progress: {precentage_done:.2%}")
         
 end = datetime.now()   
 

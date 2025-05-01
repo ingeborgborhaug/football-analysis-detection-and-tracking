@@ -13,7 +13,7 @@ TEST_IMAGES_PATH = DATASET_PATH + "/3_test_1min_hamkam_from_start/img1"
 
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-IMG_SIZE = 1088
+IMG_SIZE = 640 #1088
 CONFIDENCE_THRESHOLD_PLAYER = 0.4
 CONFIDENCE_THRESHOLD_BALL = 0.2
 NAME_2_COLOR = {
@@ -24,7 +24,7 @@ model = YOLO("yolov8s.pt")
 
 ## Already trained model
 
-model = YOLO('football-analysis-detection-and-tracking/runs/detect/train66/weights/best.pt')
+# model = YOLO('football-analysis-detection-and-tracking/runs/detect/train66/weights/best.pt')
 
 ## Find the best hyperparameters
 
@@ -43,26 +43,26 @@ model = YOLO('football-analysis-detection-and-tracking/runs/detect/train66/weigh
 
 ## Train the model with the best hyperparameters
 
-# start = datetime.now()
-# results_training = model.train(
-#     data= LOCAL_PATH + "/data.yaml", 
-#     epochs=300, 
-#     imgsz=IMG_SIZE, 
-#     warmup_epochs=2.77509,
-#     weight_decay=0.00051,
-#     box=7.41325,
-#     cls=0.4922,
-#     dfl=1.43177,
-#     hsv_s=0.72628,
-#     scale=0.48445,
-#     dropout=0.3, 
-#     patience=100, 
-#     val=True,
-#     plots=True
-# )
-# end = datetime.now()
-# print(f"Training complete. Best model at: {results_training.save_dir}/weights/best.pt")
-# print(f"Training time: {end - start}")
+start = datetime.now()
+results_training = model.train(
+    data= LOCAL_PATH + "/data.yaml", 
+    epochs=300, 
+    imgsz=IMG_SIZE, 
+    warmup_epochs=2.77509,
+    weight_decay=0.00051,
+    box=7.41325,
+    cls=0.4922,
+    dfl=1.43177,
+    hsv_s=0.72628,
+    scale=0.48445,
+    dropout=0.3, 
+    patience=100, 
+    val=True,
+    plots=True
+)
+end = datetime.now()
+print(f"Training complete. Best model at: {results_training.save_dir}/weights/best.pt")
+print(f"Training time: {end - start}")
 
 def draw_detections(frame, detections):
     frame = frame.copy()

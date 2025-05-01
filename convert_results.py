@@ -10,8 +10,8 @@ fig, axs = plt.subplots(2, 2, figsize=(14, 10))
 axs = axs.ravel()
 
 # Plot Training Loss
-axs[0].plot(df['epoch'], df['train/box_loss'], label='Box Loss', color='royalblue')
-axs[0].plot(df['epoch'], df['train/cls_loss'], label='Class Loss', color='seagreen')
+axs[0].plot(df['epoch'], df['val/box_loss'], label='Box Loss', color='royalblue')
+axs[0].plot(df['epoch'], df['val/cls_loss'], label='Class Loss', color='seagreen')
 axs[0].set_title('Training Loss', fontsize=16)
 axs[0].set_xlabel('Epoch', fontsize=12)
 axs[0].set_ylabel('Loss', fontsize=12)

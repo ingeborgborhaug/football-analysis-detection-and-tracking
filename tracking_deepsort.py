@@ -122,6 +122,9 @@ for max_age, n_init, max_iou_distance in param_combinations:
             height = ymax - ymin
             pred_boxes.append([xmin, ymin, width, height])
 
+            class_id = track.det_class
+            if class_id == 0:
+                track_id = 23
 
             # draw the bounding box and the track id
             cv2.rectangle(frame, (xmin, ymin), (xmax, ymax), GREEN, 2)
