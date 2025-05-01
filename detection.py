@@ -14,7 +14,8 @@ TEST_IMAGES_PATH = DATASET_PATH + "/3_test_1min_hamkam_from_start/img1"
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
 IMG_SIZE = 1088
-CONFIDENCE_THRESHOLD = 0.0
+CONFIDENCE_THRESHOLD_PLAYER = 0.4
+CONFIDENCE_THRESHOLD_BALL = 0.2
 NAME_2_COLOR = {
     "Ball": (0,200,200),
     "Player": (255,0,0),
@@ -42,26 +43,26 @@ model = YOLO('football-analysis-detection-and-tracking/runs/detect/train66/weigh
 
 ## Train the model with the best hyperparameters
 
-start = datetime.now()
-results_training = model.train(
-    data= LOCAL_PATH + "/data.yaml", 
-    epochs=300, 
-    imgsz=IMG_SIZE, 
-    warmup_epochs=2.77509,
-    weight_decay=0.00051,
-    box=7.41325,
-    cls=0.4922,
-    dfl=1.43177,
-    hsv_s=0.72628,
-    scale=0.48445,
-    dropout=0.3, 
-    patience=100, 
-    val=True,
-    plots=True
-)
-end = datetime.now()
-print(f"Training complete. Best model at: {results_training.save_dir}/weights/best.pt")
-print(f"Training time: {end - start}")
+# start = datetime.now()
+# results_training = model.train(
+#     data= LOCAL_PATH + "/data.yaml", 
+#     epochs=300, 
+#     imgsz=IMG_SIZE, 
+#     warmup_epochs=2.77509,
+#     weight_decay=0.00051,
+#     box=7.41325,
+#     cls=0.4922,
+#     dfl=1.43177,
+#     hsv_s=0.72628,
+#     scale=0.48445,
+#     dropout=0.3, 
+#     patience=100, 
+#     val=True,
+#     plots=True
+# )
+# end = datetime.now()
+# print(f"Training complete. Best model at: {results_training.save_dir}/weights/best.pt")
+# print(f"Training time: {end - start}")
 
 def draw_detections(frame, detections):
     frame = frame.copy()
@@ -71,8 +72,12 @@ def draw_detections(frame, detections):
         class_id = data[5]
         class_name = model.names[class_id]
 
-        if float(confidence) < CONFIDENCE_THRESHOLD:
-            continue
+        if class_name == "Player":
+            if float(confidence) < CONFIDENCE_THRESHOLD_PLAYER:
+                continue
+        elif class_name == "Ball":
+            if float(confidence) < CONFIDENCE_THRESHOLD_BALL:
+                continue
 
         xmin, ymin, xmax, ymax = int(data[0]), int(data[1]), int(data[2]), int(data[3])
         label = f"{class_name} {confidence:.2f}"
