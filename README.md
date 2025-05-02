@@ -100,8 +100,14 @@ pip install -r football-analysis-detection-and-tracking/requirements.txt
 
 ---
 
-## Run code:
+## Run code detection:
 
 ```bash
 python3 football-analysis-detection-and-tracking/detection.py
+```
+
+## Run code tracking:
+
+```bash
+python3 football-analysis-detection-and-tracking/tracking_deepsort.py
 ```
